@@ -123,7 +123,7 @@ public class OpenIDConnectProviderRegistryImpl extends DefaultComponent
             } else {
                 log.warn("Provider "
                         + provider.getName()
-                        + " is already in the Database, XML contribution  won't overwrite it");
+                        + " is already in the Database, XML contribution won't overwrite it");
             }
             providers.put(
                     provider.getName(),
