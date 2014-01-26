@@ -54,6 +54,10 @@
       <groupId>javax.faces</groupId>
       <artifactId>jsf-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.nuxeo.ecm.platform</groupId>

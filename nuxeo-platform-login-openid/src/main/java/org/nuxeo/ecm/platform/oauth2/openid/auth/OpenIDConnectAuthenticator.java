@@ -164,6 +164,19 @@ public class OpenIDConnectAuthenticator implements NuxeoAuthenticationPlugin {
                     log.error(e, e);
                     return null;
                 }
+
+                // https://www.googleapis.com/oauth2/v3/userinfo?access_token=
+                // "name": "Julien Carsique",
+                // "given_name": "Julien",
+                // "family_name": "Carsique",
+                // "profile": "https://plus.google.com/112705837097552076767",
+                // "picture":
+                // "https://lh6.googleusercontent.com/-hDNLtDWdTok/AAAAAAAAAAI/AAAAAAAATeE/mPqKmAD44KQ/photo.jpg",
+                // "email": "julien.carsique@gmail.com",
+                // "email_verified": true,
+                // "gender": "male",
+                // "locale": "fr"
+
             } else {
                 sendError(httpRequest, "No user found with email: \""
                         + info.email + "\".");

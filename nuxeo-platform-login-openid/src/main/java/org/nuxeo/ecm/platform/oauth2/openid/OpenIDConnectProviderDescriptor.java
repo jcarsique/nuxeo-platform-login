@@ -49,6 +49,8 @@ public class OpenIDConnectProviderDescriptor implements Serializable {
     @XNode("clientSecret")
     protected String clientSecret;
 
+    // TODO NXP-12775 createUser? updateInfos?
+
     @XNodeList(value = "scope", type = String[].class, componentType = String.class)
     public String[] scopes;
 

@@ -143,6 +143,25 @@ public class OpenIDConnectProvider implements LoginProviderLinkComputer {
     }
 
     public OpenIdUserInfo getUserInfo(String accessToken) {
+        return getUserInfo("access_token", accessToken);
+    }
+
+    /**
+     * Parse an ID token to extract user infos
+     *
+     * @since 5.8
+     */
+    public OpenIdUserInfo parseUserInfo(String idToken) {
+        // TODO NXP-12775 rather use an ID token parsing for performance purpose
+        // https://www.googleapis.com/oauth2/v1/tokeninfo?id_token=
+        // GoogleIDTokenVerifer
+        return getUserInfo("id_token", idToken);
+    }
+
+    /**
+     * @since 5.8
+     */
+    public OpenIdUserInfo getUserInfo(String tokenName, String tokenValue) {
         OpenIdUserInfo userInfo = null;
 
         HttpRequestFactory requestFactory = HTTP_TRANSPORT.createRequestFactory(new HttpRequestInitializer() {
@@ -153,7 +172,7 @@ public class OpenIDConnectProvider implements LoginProviderLinkComputer {
         });
 
         GenericUrl url = new GenericUrl(userInfoURL);
-        url.set("access_token", accessToken);
+        url.set(tokenName, tokenValue);
         HttpResponse response = null;
         try {
             HttpRequest request = requestFactory.buildGetRequest(url);
@@ -185,6 +204,7 @@ public class OpenIDConnectProvider implements LoginProviderLinkComputer {
     /**
      *
      * Requests a new access token from a refresh token
+     * https://accounts.google.com/o/oauth2/token
      * TODO NXP-12775
      *
      * @since 5.8
@@ -193,17 +213,6 @@ public class OpenIDConnectProvider implements LoginProviderLinkComputer {
             String refresh) {
         throw new UnsupportedOperationException(
                 "TODO NXP-12775 implement use of refresh token");
-    }
-
-    /**
-     * Parse an ID token to extract user infos
-     *
-     * @since 5.8
-     */
-    public OpenIdUserInfo parseUserInfo(String idToken) {
-        // TODO Auto-generated method stub
-        // return null;
-        throw new UnsupportedOperationException();
     }
 
 }

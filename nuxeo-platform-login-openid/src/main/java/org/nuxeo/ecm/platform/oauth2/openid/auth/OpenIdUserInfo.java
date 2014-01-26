@@ -21,8 +21,21 @@ package org.nuxeo.ecm.platform.oauth2.openid.auth;
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 
+/**
+ * https://www.googleapis.com/auth/userinfo.email
+ * https://www.googleapis.com/oauth2/v1/tokeninfo
+ */
 public class OpenIdUserInfo extends GenericJson {
 
     @Key("email")
     public String email;
+
+    @Key("verified_email")
+    public Boolean verifiedEmail;
+
+    @Key("user_id")
+    public String userId;
+
+    @Key
+    public String scope;
 }
